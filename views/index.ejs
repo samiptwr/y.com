@@ -1,0 +1,51 @@
+<%- include('./partials/header') %>
+<% if (message && message.type == 'danger') { %>
+    <div class="danger-message">
+        <h4><%= message.message %></h4>
+        <button class="btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+<% } %>
+<% if (message && message.type == 'success') { %>
+    <div class="success-message">
+        <h4><%= message.message %></h4>
+        <button class="btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+<% } %>
+
+<!-- add post options -->
+<div class="add-post-container">
+    <div class="hero">
+        <h3><i class="fa-solid fa-pen-to-square"></i> New Post: </h3>
+        <div class="input-field">
+            <form action="/post" method="post">
+                <textarea name="new_post" placeholder="Share your thoughts...."></textarea>
+                <% if (isLogged) { %>
+                    <input type="submit" value="Post">
+                <% } else {%>
+                    <input type="submit" value="Post" disabled>
+                <%  }%>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- posts -->
+<% posts.forEach(post => { %>
+    <div class="hero-post">
+        <div class="options user-options">
+            <span><i class="fa-solid fa-user"></i></span>
+            <span> <%= post.user.name %></span>
+            <button><a href="/follow/<%= post.user._id %>">Follow</a></button>
+        </div>
+        <div class="post1 post">
+            <span id="time-span"><%= post.createdAt.toLocaleString('en-US', {weekday: 'long', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true}) %></span> <hr>
+            <span><%= post.content %></span>
+        </div>
+        <div class="options">
+            <a href="/like/<%= post._id %>"><i class="fa-solid fa-thumbs-up"></i><%= post.likes %></a>
+            <a href="/dislike/<%= post._id %>"><i class="fa-solid fa-thumbs-down"></i><%= post.dislikes %></a>
+        </div>
+    </div>
+    <hr>
+<% }) %>
+<%- include('./partials/footer') %>

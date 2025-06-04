@@ -1,0 +1,35 @@
+<%- include('./partials/header') %>
+<% if (message && message.type == 'danger') { %>
+    <div class="danger-message">
+        <h4><%= message.message %></h4>
+        <button class="btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+<% } %>
+<% if (message && message.type == 'success') { %>
+    <div class="success-message">
+        <h4><%= message.message %></h4>
+        <button class="btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+<% } %>
+    <div class="containerl">
+        <div class="box">
+            <h2>Register Here</h2> 
+            <form action="/register" method="post">
+                <label for="name">Name: </label>
+                <input type="text" name="name" required>
+                <label for="username">Username: </label>
+                <input type="text" name="username" required>
+                <label for="email">Email: </label>
+                <input type="email" name="email" required>
+                <label for="password">Password: </label>
+                <input type="password" name="password" required>
+                <label for="conform-password">Conform Password: </label>
+                <input type="password" name="conform_password" required>
+                <label for="phone_number">Phone Number: </label>
+                <input type="number" name="phone_number" required>
+                <a href="/login">Already have an account?</a>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </div>
+<%- include('./partials/footer') %>

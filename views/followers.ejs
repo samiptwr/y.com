@@ -1,0 +1,15 @@
+<%- include('./partials/header') %>
+    <div class="section2">
+        <h2 style="text-align: center; margin: 10px;">Followers: </h2>
+        <% followers.followersUsers.forEach(followerUser => { %>
+            <div class="box-followers">
+                <div class="follower">
+                    <span><i class="fa-solid fa-user"></i> <%= followerUser.name %></span>
+                    <a href="/follow/<%= followerUser._id %>">Follow</a>
+                </div>
+            </div>
+            <hr>
+        <% }) %>
+
+    </div>
+<%- include('./partials/footer') %>

@@ -1,0 +1,70 @@
+<%- include('./partials/header') %>
+<% if (message && message.type == 'danger') { %>
+    <div class="danger-message">
+        <h4><%= message.message %></h4>
+        <button class="btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+<% } %>
+<% if (message && message.type == 'success') { %>
+    <div class="success-message">
+        <h4><%= message.message %></h4>
+        <button class="btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+<% } %>
+<a href="/logout" id="logout-link"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+    <div class="container2">
+        <div class="details">
+            <div class="circle-profile">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <span id="name"><%= userExists.name %></span> 
+            <span id="username"><%= userExists.username %></span>
+            <span id="bio"><%= userExists.bio %></span>
+        </div>
+        <div class="likes-followers-details">
+            <span>Total Likes: <%= userExists.totalLikes %></span>
+            <span>Followers: <%= userExists.followers %></span>
+            <span>Following: <%= userExists.following %></span>
+        </div>
+        <div class="personal-details">
+            <h3>Personal Details: </h3>
+            <span><i class="fa-solid fa-envelope"></i> Email: <%= userExists.email %></span>
+            <span><i class="fa-solid fa-phone"></i> Phone No.: <%= userExists.phone_no %></span>
+            <span><i class="fa-solid fa-book"></i> Education: <%= userExists.education %></span>
+            <span><i class="fa-solid fa-location-dot"></i> Lives In: <%= userExists.lives_in %></span>
+            <span><i class="fa-solid fa-building"></i> Works At: <%= userExists.works_at %></span>
+            <a href="/edit/<%= userExists._id %>" id="edit-btn"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
+        </div>
+        <div class="posts">
+            <!-- post design -->
+            <div class="hero-post">
+                <h3>Posts: </h3>
+                <% userExists.posts.forEach(post => { %>
+                    <div class="post">
+                        <span><%= post.content %></span>
+                    </div>
+                    <div class="options">
+                        <a href="/like/<%= post._id %>"><i class="fa-solid fa-thumbs-up"></i><%= post.likes %></a>
+                        <a href="/dislike/<%= post.id %>"><i class="fa-solid fa-thumbs-down"></i><%= post.dislikes %></a>
+                        <a href="/delete/<%= post.id %>"><i class="fa-solid fa-trash"></i></a>
+                    </div> 
+                <% }) %>
+
+                <!-- <div class="options user-options">
+                    <span><i class="fa-solid fa-user"></i></span>
+                    <span> Samip Tiwari</span>
+                    <button><a href="">Follow</a></button>
+                </div>
+                <div class="post1 post">
+                    <span>Long Live Democracy!! Democracy is the gift for humans. We cannot sacrifice the freedom just for another curruptionists.</span>
+                </div>
+                <div class="options">
+                    <a href="/like/:id"><i class="fa-solid fa-thumbs-up"></i>100K</a>
+                    <a href="/dislike/:id"><i class="fa-solid fa-thumbs-down"></i>20K</a>
+                    <a href="/comment/:id"><i class="fa-solid fa-comment"></i>1.4K</a>
+                    <button class="share-btn"><i class="fa-solid fa-share"></i>983</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+<%- include('./partials/footer') %>

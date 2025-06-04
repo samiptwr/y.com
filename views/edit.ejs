@@ -1,0 +1,34 @@
+<%- include('./partials/header') %>
+<% if (message && message.type == 'danger') { %>
+    <div class="danger-message">
+        <h4><%= message.message %></h4>
+        <button class="btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+<% } %>
+<% if (message && message.type == 'success') { %>
+    <div class="success-message">
+        <h4><%= message.message %></h4>
+        <button class="btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+<% } %>
+<div class="containerl">
+    <div class="box">
+        <h2>Edit: </h2>
+        <form action="/edit/<%= usersData._id %>" method="post">
+            <label for="name">Name: </label>
+            <input type="text" name="name" value="<%= usersData.name %>">
+            <label for="email">Email: </label>
+            <input type="email" name="email" value="<%= usersData.email %>">
+            <label for="phone_no">Phone No.: </label>
+            <input type="text" name="phone_no" value="<%= usersData.phone_number %>">
+            <label for="education">Education: </label>
+            <input type="text" name="education" value="<%= usersData.education %>">
+            <label for="lives_in">Lives In: </label>
+            <input type="text" name="lives_in" value="<%= usersData.lives_in %>">
+            <label for="works_at">Works At: </label>
+            <input type="text" name="works_at" value="<%= usersData.works_at %>">
+            <a href="/user/<%= usersData._id %>">Return to the account!</a>
+            <input type="submit" value="Edit">
+        </form>
+    </div>
+<%- include('./partials/footer') %>
